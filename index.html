@@ -14,9 +14,7 @@
     This is a placeholder for base href that will be replaced by the value of
     the `--base-href` argument provided to `flutter build`.
   -->
-  <!-- Use a relative base so the app works when hosted under a repo path like
-       https://username.github.io/RepoName/  -->
-  <base href="./">
+  <base href="/">
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
@@ -25,7 +23,7 @@
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="quote_master">
+  <meta name="apple-mobile-web-app-title" content="quote_smart">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
@@ -33,47 +31,8 @@
 
   <title>quote_smart</title>
   <link rel="manifest" href="manifest.json">
-
-  <!--
-    Helpful during deploy/testing: unregister any old service workers and clear
-    caches. This prevents stale cached files (often the cause of a white page).
-    You can remove this block later once your deployment is stable.
-  -->
-  <script>
-    (function() {
-      if (!('serviceWorker' in navigator)) return;
-
-      // Try to unregister any existing SW registrations (helps remove stale builds)
-      navigator.serviceWorker.getRegistrations().then(function(registrations) {
-        for (let reg of registrations) {
-          try { reg.unregister(); } catch (e) { /* ignore */ }
-        }
-      }).catch(function(_) {});
-
-      // Also attempt to remove a named service worker file if present
-      navigator.serviceWorker.getRegistration('./flutter_service_worker.js')
-        .then(function(reg) { if (reg) reg.unregister(); })
-        .catch(function(_) {});
-
-      // Clear caches created by flutter web builds (best-effort)
-      if (window.caches && caches.keys) {
-        caches.keys().then(function(keys) {
-          return Promise.all(keys.map(function(key) {
-            // optional: only remove keys that look like flutter caches
-            return caches.delete(key);
-          }));
-        }).catch(function(_) {});
-      }
-    })();
-  </script>
 </head>
 <body>
-  <!-- Flutter bootstrap -->
   <script src="flutter_bootstrap.js" async></script>
-
-  <!-- Optional: If your build includes a service worker file and you later
-       want to register it, do so explicitly in a separate script and only
-       after ensuring the cache strategy is correct. For now we've unregistered
-       any SW to avoid stale caches during deployment testing. -->
 </body>
 </html>
